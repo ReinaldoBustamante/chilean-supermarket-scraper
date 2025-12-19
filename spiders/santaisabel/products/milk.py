@@ -1,5 +1,5 @@
 from playwright.sync_api import sync_playwright
-from utils.normalize_name import normalize_name
+from utils.normalize_milk import normalize_milk
 
 domain = "https://www.santaisabel.cl"
 url = "https://www.santaisabel.cl/lacteos-huevos-y-congelados/leches/leche-liquida"
@@ -36,15 +36,18 @@ def get_milk_data():
                 product_brand = product.locator('p.text-sm.text-gray-500.mb-1.h-9.md\\:h-auto').text_content()
                 product_img_url = product.locator('div.principal-product-image').locator('img').first.get_attribute('src')
                 product_url = domain + product.locator('a').first.get_attribute('href')
-                normalized_name = normalize_name(product_raw_name)
+                normalized_milk = normalize_milk(product_raw_name)
 
                 object = {
-                    "normalized_name": normalized_name,
+                    "normalized_name": normalized_milk['normalized_name'],
                     "category": "leche",
                     "brand": product_brand,
+                    "quantity_value": normalized_milk['quantity_value'],
+                    "quantity_unit": normalized_milk['quantity_unit'],
+                    "units": normalized_milk['units'],
                     "img_url": product_img_url,
                     "product_url": product_url,
-                    "price": product_price
+                    "price": int(product_price)
                 }
                 results.append(object)
         browser.close()
