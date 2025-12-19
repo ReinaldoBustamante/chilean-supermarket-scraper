@@ -41,9 +41,9 @@ def get_data(url, rules, category):
                     "normalized_name": normalized_milk['normalized_name'],
                     "category": category,
                     "brand": product_brand,
-                    "quantity_value": normalized_milk['quantity_value'],
-                    "quantity_unit": normalized_milk['quantity_unit'],
-                    "units": normalized_milk['units'],
+                    "amount": normalized_milk['amount'],
+                    "type_unit": normalized_milk['type_unit'],
+                    "unit_value": normalized_milk['unit_value'],
                     "img_url": product_img_url,
                     "product_url": product_url,
                     "price": int(product_price)

@@ -6,17 +6,17 @@ def normalize_data(raw_name, rules, category):
     clean_name = unidecode(raw_name).lower()
 
     name_pattern = rules["name_pattern"]
-    pattern = rules["unit_pattern"]
-    units_pattern = rules["amount_items_pattern"]
+    unit_pattern = rules["unit_pattern"]
+    amount_items_pattern = rules["amount_items_pattern"]
     
-    quantity_value = int(re.search(pattern, clean_name).groups()[0]) if re.search(pattern, clean_name) else 1
-    quantity_unit = re.search(pattern, clean_name).groups()[1] if re.search(pattern, clean_name) else ""
-    units = int(re.search(units_pattern, clean_name).groups()[0]) if re.search(units_pattern, clean_name) else 1
     normalized_name = category + " " + " ".join(re.findall(name_pattern, clean_name)) if re.findall(name_pattern, clean_name) else category
-   
+    unit_value = int(re.search(unit_pattern, clean_name).groups()[0]) if re.search(unit_pattern, clean_name) else 1
+    amount = int(re.search(amount_items_pattern, clean_name).groups()[0]) if re.search(amount_items_pattern, clean_name) else 1
+    type_unit = re.search(unit_pattern, clean_name).groups()[1] if re.search(unit_pattern, clean_name) else ""
+
     return {
         "normalized_name": normalized_name,
-        "quantity_value": quantity_value,
-        "quantity_unit": quantity_unit,
-        "units": units
+        "amount": amount,
+        "type_unit": type_unit,
+        "unit_value": unit_value
     }
