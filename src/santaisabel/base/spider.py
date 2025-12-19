@@ -1,5 +1,5 @@
 from playwright.sync_api import sync_playwright
-from src.santaisabel.utils.normalize_data import normalize_data
+from santaisabel.utils.normalize_data import normalize_data
 
 domain = "https://www.santaisabel.cl"
 
@@ -39,7 +39,7 @@ def get_data(url, rules, category):
 
                 object = {
                     "normalized_name": normalized_milk['normalized_name'],
-                    "category": "leche",
+                    "category": category,
                     "brand": product_brand,
                     "quantity_value": normalized_milk['quantity_value'],
                     "quantity_unit": normalized_milk['quantity_unit'],

@@ -1,4 +1,4 @@
-from src.santaisabel.base.spider import get_data
+from santaisabel.base.spider import get_data
 
 url = "https://www.santaisabel.cl/lacteos-huevos-y-congelados/leches/leche-liquida"
 rules = {
