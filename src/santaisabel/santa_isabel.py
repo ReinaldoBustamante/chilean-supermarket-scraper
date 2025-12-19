@@ -1,4 +1,4 @@
-from spiders.santaisabel.products.milk import get_milk_data
+from src.santaisabel.milk.get_milk import get_milk
 
 class SantaIsabelSpider:
     def __init__(self):
@@ -8,8 +8,7 @@ class SantaIsabelSpider:
     def run(self):
         print(f"--- Iniciando scraping en {self.name} ---")
         
-        # Llamamos a la lógica específica de un producto
-        data = get_milk_data()
+        data = get_milk()
+        print(f"Resultados obtenidos de leche: {len(data)} productos.")
         
-        print(f"Resultados obtenidos: {len(data)} productos.")
         return data

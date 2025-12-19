@@ -1,10 +1,9 @@
 from playwright.sync_api import sync_playwright
-from utils.normalize_milk import normalize_milk
+from src.santaisabel.utils.normalize_data import normalize_data
 
 domain = "https://www.santaisabel.cl"
-url = "https://www.santaisabel.cl/lacteos-huevos-y-congelados/leches/leche-liquida"
 
-def get_milk_data():
+def get_data(url, rules, category):
     results = []
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
@@ -36,7 +35,7 @@ def get_milk_data():
                 product_brand = product.locator('p.text-sm.text-gray-500.mb-1.h-9.md\\:h-auto').text_content()
                 product_img_url = product.locator('div.principal-product-image').locator('img').first.get_attribute('src')
                 product_url = domain + product.locator('a').first.get_attribute('href')
-                normalized_milk = normalize_milk(product_raw_name)
+                normalized_milk = normalize_data(product_raw_name, rules, category)
 
                 object = {
                     "normalized_name": normalized_milk['normalized_name'],

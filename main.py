@@ -1,10 +1,9 @@
-from spiders.santaisabel.spider import SantaIsabelSpider
+from src.santaisabel.santa_isabel import SantaIsabelSpider
 import json
 
 def main():
     si_spider = SantaIsabelSpider()
-    resultados = si_spider.run()
-    print(json.dumps(resultados, indent=2))
+    si_spider.run()
         
 if __name__ == "__main__":
     main()
